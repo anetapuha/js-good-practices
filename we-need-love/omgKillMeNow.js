@@ -1,16 +1,22 @@
-function check_to_see_if_the_first_cart_is_full(crt) {
+function isFirstCartFull(crt) {
   let full = false
-  if (crt.size > 100) {
-    full = true
-  }
-  return full;
-}
+  const maxSize = 100
 
-let cart_name_as_string = 'Shopping Cart';
-let the_carts = [{
-  name: cartNameAsString,
-  size: 101
+  if (crt.size > maxSize) {
+    return full = true;
+  } else {
+    return full = false
+  }
+}
+let cartName = 'Shopping Cart';
+let cartSize = 101
+let carts = [{
+  name: cartName,
+  size: cartSize
 }];
 
-let the_first_cart = the_carts[0];
-let is_the_cart_full = check_to_see_if_the_first_cart_is_full(the_first_cart);
+let firstCart = carts[0];
+let isCartFull = isFirstCartFull(firstCart);
+
+// console.log(isCartFull);
+console.log(firstCart.name + " has " + firstCart.size + " items");
