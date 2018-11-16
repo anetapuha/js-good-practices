@@ -1,61 +1,52 @@
 document.prototype.frm = document.querySelector('.form');
+const adminUser = "admin123"
+const adminPassword = "milan12345"
+const isAdminUser = adminUser + adminPassword
 
-function Cancel() 
-{
-    document.frm.username.value="";
-    document.frm.password.value="";
+function Cancel() {
+    document.frm.username.value = "";
+    document.frm.password.value = "";
     document.getElementById("username").focus();
 }
 
-function checklogin(name, password) 
-{
-    var m_username = "admin123";
-    var m_password = "milan12345"
+function IsAdminLogin(name, password) {
+    let user = name + password
 
-    if(name!="admin123" || password!="milan12345") 
-        return false;
-    else
+    if(user == isAdminUser) {
         return true;
+    } else {
+        return false;
+    }
 }
 
 function Login() {
     alert("You're logged in!");
 }
 
-function _submit()
-{
-    var f=document.frm;
-    var username=f.username.value;
-    var password=f.password.value;
-    if(f.username.value=="") 
-    {
+function _submit() {
+    let f = document.frm;
+    let username = f.username.value;
+    let password = f.password.value;
+    let userNameField = document.getElementById("username");
+
+    if(username == "" || password == "") {
         alert("Username and Password cannot be empty");
-        f.username.focus();
-        return false;
-    }
-    if(false == checklogin(f.username.value, f.password.value)) 
-    {
-        alert("User and Password are incorrect");
-        document.frm.username.value="";
-        document.frm.password.value="";
-        document.getElementById("username").focus();
+        userNameField.focus();
         Cancel();
-    } else {
+    } else if(IsAdminLogin(username, password)) {
         Login();
-    }
+        alert("Welcome admin!");
+    } else {
+        Login()
+    } 
 }
 
-var submit_button = document.getElementsByTagName('button');
+const submitButton = document.getElementsByTagName('button');
 
-if(typeof document.frm === 'object') 
-{
-    if(submit_button.length > 0) 
-    {
-        submit_button = submit_button[0]; 
+if(typeof document.frm === 'object' && submitButton.length > 0) {
+        submitButton = submitButton[0]; 
         //Submit button click
-        submit_button.addEventListener('click', function() {
+        submitButton.addEventListener('click', function() {
             _submit();
         });
     }
-}
-
